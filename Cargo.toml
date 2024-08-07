@@ -13,18 +13,33 @@ targets = ["x86_64-unknown-linux-gnu", "wasm32-unknown-unknown"]
 [dependencies]
 egui = "0.27.2"
 eframe = { version = "0.27.2", default-features = false, features = [
+    "accesskit",     # Make egui compatible with screen readers. NOTE: adds a lot of dependencies.
     "default_fonts", # Embed the default egui fonts.
     "wgpu",          # Use the wpgu rendering backend.
+    "wayland",
+    "x11",
+    "web_screen_reader", # Enable screen reader support (requires `ctx.options_mut(|o| o.screen_reader = true);`) on web.
+## For other platforms, use the `accesskit` feature instead.
     "persistence",   # Enable restoring app state when restarting the app.
 ] }
 log = "0.4"
+
+#TODO: document this block
+egui_extras = "0.27.2"
+#openmpt-sys = { workspace = true }
+rfd = "0.13"
+async-std = "1.12.0"
+cpal = "0.15"
 
 # For app persistence:
 serde = { version = "1", features = ["derive"] }
 
 # native:
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-env_logger = "0.10"
+env_logger = { version = "0.10", default-features = false, features = [
+    "auto-color",
+    "humantime",
+] }
 
 # web:
 [target.'cfg(target_arch = "wasm32")'.dependencies]
