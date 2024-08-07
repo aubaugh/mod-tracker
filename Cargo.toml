@@ -1,9 +1,13 @@
 [package]
 name = "mod-tracker"
+description = "module tracker leveraging libopenmpt"
+#documentation = "docs.rs/mod-tracker"
+homepage = "https://aubaugh.github.io/mod-tracker"
+repository = "https://github.com/aubaugh/mod-tracker"
 version = "0.1.0"
 authors = ["Austin Baugh <austin@serene.cafe>"]
 edition = "2021"
-include = ["LICENSE-APACHE", "LICENSE-MIT", "**/*.rs", "Cargo.toml"]
+include = ["LICENSE-APACHE", "LICENSE-MIT", "**/*.rs", "Cargo.toml", "assets/*"]
 rust-version = "1.76"
 
 [package.metadata.docs.rs]
@@ -15,7 +19,7 @@ egui = "0.27.2"
 eframe = { version = "0.27.2", default-features = false, features = [
     "accesskit",     # Make egui compatible with screen readers. NOTE: adds a lot of dependencies.
     "default_fonts", # Embed the default egui fonts.
-    "wgpu",          # Use the wpgu rendering backend.
+    "glow",          # Use the glow rendering backend.
     "wayland",
     "x11",
     "web_screen_reader", # Enable screen reader support (requires `ctx.options_mut(|o| o.screen_reader = true);`) on web.
